@@ -11,13 +11,13 @@ export const Experience = () => {
         <div className="text-center max-w-3xl mx-auto mb-16 space-y-3">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-purple-950/60 border border-purple-500/30 text-purple-400 text-xs font-mono">
             <Briefcase className="w-3.5 h-3.5" />
-            <span>Career & Leadership Track</span>
+            <span>Practical Engineering Track</span>
           </div>
           <h2 className="text-3xl sm:text-5xl font-extrabold font-['Outfit'] tracking-tight text-white">
             Practical <span className="bg-gradient-to-r from-purple-400 to-violet-400 bg-clip-text text-transparent">Experience</span>
           </h2>
           <p className="text-slate-400 text-sm sm:text-base">
-            Technical instructor, software project lead, and freelance systems developer.
+            Professional project-based engineering across mobile development, embedded systems, backend architectures, and technical instruction.
           </p>
         </div>
 
@@ -65,10 +65,12 @@ export const Experience = () => {
                           {exp.organization}
                         </div>
 
-                        <div className="flex items-center gap-1 text-xs font-mono text-slate-400 pt-0.5">
-                          <MapPin className="w-3 h-3 text-slate-500" />
-                          <span>{exp.location}</span>
-                        </div>
+                        {exp.location && (
+                          <div className="flex items-center gap-1 text-xs font-mono text-slate-400 pt-0.5">
+                            <MapPin className="w-3 h-3 text-slate-500" />
+                            <span>{exp.location}</span>
+                          </div>
+                        )}
                       </div>
 
                       <p className="text-slate-300 text-xs sm:text-sm leading-relaxed">

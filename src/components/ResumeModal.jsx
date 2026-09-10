@@ -1,10 +1,12 @@
 import React from 'react';
-import { X, Download, Printer, GraduationCap, Briefcase, Code2, Award } from 'lucide-react';
+import { X, Download, Printer, GraduationCap, Briefcase, Code2, Award, Users } from 'lucide-react';
 import { profileData } from '../data/profile';
 import { experienceData } from '../data/experience';
 import { educationData } from '../data/education';
 import { skillCategories } from '../data/skills';
 import { projectsData } from '../data/projects';
+import { certificatesData } from '../data/certificates';
+import { leadershipData } from '../data/leadership';
 
 export const ResumeModal = ({ onClose }) => {
   const handlePrint = () => {
@@ -16,29 +18,35 @@ export const ResumeModal = ({ onClose }) => {
 ISMAIL GHONEIM
 Software Engineer | Mobile Application Development | Backend & Embedded Systems
 Email: ${profileData.contactInfo.email} | LinkedIn: ${profileData.contactInfo.linkedin}
-Location: ${profileData.contactInfo.location} | University: ${profileData.contactInfo.university}
+GitHub: ${profileData.contactInfo.github} | Location: ${profileData.contactInfo.location}
 
-PROFILE SUMMARY
+PROFESSIONAL SUMMARY
 ${profileData.aboutStory.join('\n\n')}
 
 EDUCATION
-${educationData.map(e => `- ${e.degree} (${e.period})\n  ${e.institution}, ${e.location}`).join('\n')}
+${educationData.map(e => `- ${e.degree} (${e.period}) [${e.currentStatus}, ${e.graduationExpected}]\n  ${e.institution}, ${e.location}\n  Focus: ${e.academicFocus.join(', ')}`).join('\n\n')}
 
-EXPERIENCE & SPECIALIZATION
-${experienceData.map(e => `- ${e.role} | ${e.organization} (${e.period})\n  ${e.description}`).join('\n')}
+SPECIALIZATION & PROJECT EXPERIENCE
+${experienceData.map(e => `- ${e.role} | ${e.organization} (${e.period})\n  ${e.description}\n  Responsibilities:\n${e.responsibilities.map(r => `    * ${r}`).join('\n')}`).join('\n\n')}
 
-FEATURED PROJECTS
-${projectsData.map(p => `- ${p.title} (${p.category}): ${p.shortDescription} [Stack: ${p.techStack.join(', ')}]`).join('\n')}
+TEAM LEADERSHIP
+${leadershipData.map(l => `- ${l.role}: ${l.project} (${l.domain})\n  ${l.description}\n  Highlights:\n${l.highlights.map(h => `    * ${h}`).join('\n')}`).join('\n\n')}
+
+KEY FEATURED PROJECTS
+${projectsData.map(p => `- ${p.title} [${p.categoryLabel || p.category}]: ${p.shortDescription}\n  Technologies: ${p.techStack.join(', ')}${p.githubUrl ? `\n  GitHub: ${p.githubUrl}` : ''}`).join('\n\n')}
 
 TECHNICAL SKILLS
 ${skillCategories.map(c => `- ${c.name}: ${c.skills.map(s => s.name).join(', ')}`).join('\n')}
+
+CERTIFICATIONS & TRAINING
+${certificatesData.map(c => `- ${c.title} — ${c.issuer} (${c.category})`).join('\n')}
     `.trim();
 
     const blob = new Blob([textContent], { type: 'text/plain' });
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
     a.href = url;
-    a.download = 'Ismail_Ghoneim_CV.txt';
+    a.download = 'Ismail_Ghoneim_Software_Engineer_CV.txt';
     document.body.appendChild(a);
     a.click();
     document.body.removeChild(a);
@@ -54,15 +62,15 @@ ${skillCategories.map(c => `- ${c.name}: ${c.skills.map(s => s.name).join(', ')}
         <div className="bg-[#121422] px-6 py-4 border-b border-purple-500/20 flex items-center justify-between sticky top-0 z-20">
           <div className="flex items-center gap-2">
             <span className="w-3 h-3 rounded-full bg-emerald-400" />
-            <h3 className="text-lg font-bold font-['Outfit'] text-white">
-              Official Curriculum Vitae • Ismail Ghoneim
+            <h3 className="text-base sm:text-lg font-bold font-['Outfit'] text-white">
+              Curriculum Vitae • Ismail Ghoneim
             </h3>
           </div>
 
           <div className="flex items-center gap-2">
             <button
               onClick={handlePrint}
-              className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white/5 border border-purple-500/30 text-slate-200 hover:text-white text-xs font-semibold"
+              className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white/5 border border-purple-500/30 text-slate-200 hover:text-white text-xs font-semibold cursor-pointer"
               title="Print CV"
             >
               <Printer className="w-3.5 h-3.5" />
@@ -71,7 +79,7 @@ ${skillCategories.map(c => `- ${c.name}: ${c.skills.map(s => s.name).join(', ')}
 
             <button
               onClick={handleDownload}
-              className="flex items-center gap-1.5 px-4 py-1.5 rounded-lg bg-purple-600 text-white hover:bg-purple-500 text-xs font-semibold shadow-lg shadow-purple-600/30"
+              className="flex items-center gap-1.5 px-4 py-1.5 rounded-lg bg-purple-600 text-white hover:bg-purple-500 text-xs font-semibold shadow-lg shadow-purple-600/30 cursor-pointer"
               title="Download CV Document"
             >
               <Download className="w-3.5 h-3.5" />
@@ -80,7 +88,8 @@ ${skillCategories.map(c => `- ${c.name}: ${c.skills.map(s => s.name).join(', ')}
 
             <button
               onClick={onClose}
-              className="p-1.5 rounded-lg bg-white/5 border border-purple-500/20 text-slate-300 hover:text-white"
+              className="p-1.5 rounded-lg bg-white/5 border border-purple-500/20 text-slate-300 hover:text-white cursor-pointer"
+              aria-label="Close"
             >
               <X className="w-5 h-5" />
             </button>
@@ -98,13 +107,14 @@ ${skillCategories.map(c => `- ${c.name}: ${c.skills.map(s => s.name).join(', ')}
                   Ismail Ghoneim
                 </h1>
                 <p className="text-purple-400 font-mono text-sm sm:text-base font-medium">
-                  Software Engineer | Mobile Application Development | Backend & Embedded Systems
+                  Software Engineer • Flutter Mobile & Systems Development
                 </p>
               </div>
 
               <div className="text-xs font-mono text-slate-300 space-y-1 sm:text-right">
                 <div>Email: {profileData.contactInfo.email}</div>
                 <div>LinkedIn: linkedin.com/in/ismailghoneim-50b741259</div>
+                <div>GitHub: github.com/Ismail-Ibrahim2004</div>
                 <div>Location: {profileData.contactInfo.location}</div>
               </div>
             </div>
@@ -118,18 +128,18 @@ ${skillCategories.map(c => `- ${c.name}: ${c.skills.map(s => s.name).join(', ')}
 
           {/* Education Section */}
           <div className="space-y-3">
-            <h2 className="text-lg font-bold font-['Outfit'] text-purple-300 uppercase tracking-wider flex items-center gap-2 border-b border-purple-500/20 pb-1">
-              <GraduationCap className="w-5 h-5 text-purple-400" />
+            <h2 className="text-base font-bold font-['Outfit'] text-purple-300 uppercase tracking-wider flex items-center gap-2 border-b border-purple-500/20 pb-1">
+              <GraduationCap className="w-4 h-4 text-purple-400" />
               <span>Education</span>
             </h2>
 
             {educationData.map((edu) => (
-              <div key={edu.id} className="space-y-1">
+              <div key={edu.id} className="space-y-1 text-xs sm:text-sm">
                 <div className="flex justify-between items-baseline">
                   <h3 className="text-sm font-bold text-white">{edu.institution}</h3>
                   <span className="text-xs font-mono text-purple-400">{edu.period}</span>
                 </div>
-                <div className="text-xs font-semibold text-purple-300">{edu.degree}</div>
+                <div className="text-xs font-semibold text-purple-300">{edu.degree} — {edu.currentStatus} ({edu.graduationExpected})</div>
                 <div className="text-xs text-slate-400">{edu.description}</div>
               </div>
             ))}
@@ -137,13 +147,13 @@ ${skillCategories.map(c => `- ${c.name}: ${c.skills.map(s => s.name).join(', ')}
 
           {/* Specialization & Experience Section */}
           <div className="space-y-4">
-            <h2 className="text-lg font-bold font-['Outfit'] text-purple-300 uppercase tracking-wider flex items-center gap-2 border-b border-purple-500/20 pb-1">
-              <Briefcase className="w-5 h-5 text-purple-400" />
-              <span>Experience & Specialization</span>
+            <h2 className="text-base font-bold font-['Outfit'] text-purple-300 uppercase tracking-wider flex items-center gap-2 border-b border-purple-500/20 pb-1">
+              <Briefcase className="w-4 h-4 text-purple-400" />
+              <span>Project-Based Experience & Specializations</span>
             </h2>
 
             {experienceData.map((exp) => (
-              <div key={exp.id} className="space-y-2">
+              <div key={exp.id} className="space-y-1.5 text-xs sm:text-sm">
                 <div className="flex justify-between items-baseline">
                   <div>
                     <h3 className="text-sm font-bold text-white">{exp.role}</h3>
@@ -153,7 +163,7 @@ ${skillCategories.map(c => `- ${c.name}: ${c.skills.map(s => s.name).join(', ')}
                 </div>
                 <p className="text-xs text-slate-300">{exp.description}</p>
                 <div className="space-y-1 pl-3 border-l-2 border-purple-500/30">
-                  {exp.responsibilities.map((r, rIdx) => (
+                  {exp.responsibilities.slice(0, 4).map((r, rIdx) => (
                     <div key={rIdx} className="text-[11px] text-slate-300">• {r}</div>
                   ))}
                 </div>
@@ -161,10 +171,28 @@ ${skillCategories.map(c => `- ${c.name}: ${c.skills.map(s => s.name).join(', ')}
             ))}
           </div>
 
+          {/* Team Leadership Section */}
+          <div className="space-y-3">
+            <h2 className="text-base font-bold font-['Outfit'] text-purple-300 uppercase tracking-wider flex items-center gap-2 border-b border-purple-500/20 pb-1">
+              <Users className="w-4 h-4 text-purple-400" />
+              <span>Team Leadership</span>
+            </h2>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
+              {leadershipData.map((lead) => (
+                <div key={lead.id} className="p-3 rounded-xl bg-white/5 border border-purple-500/20 space-y-1">
+                  <div className="font-bold text-white">{lead.project}</div>
+                  <div className="text-purple-400 font-mono text-[11px]">{lead.role} — {lead.domain}</div>
+                  <div className="text-slate-300 text-[11px]">{lead.description}</div>
+                </div>
+              ))}
+            </div>
+          </div>
+
           {/* Technical Skills */}
           <div className="space-y-3">
-            <h2 className="text-lg font-bold font-['Outfit'] text-purple-300 uppercase tracking-wider flex items-center gap-2 border-b border-purple-500/20 pb-1">
-              <Code2 className="w-5 h-5 text-purple-400" />
+            <h2 className="text-base font-bold font-['Outfit'] text-purple-300 uppercase tracking-wider flex items-center gap-2 border-b border-purple-500/20 pb-1">
+              <Code2 className="w-4 h-4 text-purple-400" />
               <span>Technical Skills</span>
             </h2>
 
@@ -180,20 +208,37 @@ ${skillCategories.map(c => `- ${c.name}: ${c.skills.map(s => s.name).join(', ')}
 
           {/* Key Featured Projects */}
           <div className="space-y-3">
-            <h2 className="text-lg font-bold font-['Outfit'] text-purple-300 uppercase tracking-wider flex items-center gap-2 border-b border-purple-500/20 pb-1">
-              <Award className="w-5 h-5 text-purple-400" />
+            <h2 className="text-base font-bold font-['Outfit'] text-purple-300 uppercase tracking-wider flex items-center gap-2 border-b border-purple-500/20 pb-1">
+              <Award className="w-4 h-4 text-purple-400" />
               <span>Selected Projects</span>
             </h2>
 
             <div className="space-y-2 text-xs">
-              {projectsData.slice(0, 4).map((p) => (
+              {projectsData.slice(0, 5).map((p) => (
                 <div key={p.id} className="space-y-0.5">
                   <div className="font-bold text-white flex items-center justify-between">
-                    <span>{p.title} — {p.subtitle}</span>
-                    <span className="text-purple-400 font-mono">[{p.category}]</span>
+                    <span>{p.title}</span>
+                    <span className="text-purple-400 font-mono">[{p.categoryLabel || p.category}]</span>
                   </div>
                   <div className="text-slate-300">{p.shortDescription}</div>
                   <div className="text-[11px] font-mono text-slate-400">Stack: {p.techStack.join(', ')}</div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Certifications & Training */}
+          <div className="space-y-3">
+            <h2 className="text-base font-bold font-['Outfit'] text-purple-300 uppercase tracking-wider flex items-center gap-2 border-b border-purple-500/20 pb-1">
+              <Award className="w-4 h-4 text-purple-400" />
+              <span>Certifications & Training</span>
+            </h2>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs">
+              {certificatesData.map((c) => (
+                <div key={c.id} className="p-2 rounded-lg bg-white/5 border border-purple-500/10">
+                  <span className="font-semibold text-white">{c.title}</span>
+                  <span className="text-purple-400 font-mono"> — {c.issuer}</span>
                 </div>
               ))}
             </div>
@@ -206,7 +251,7 @@ ${skillCategories.map(c => `- ${c.name}: ${c.skills.map(s => s.name).join(', ')}
           <span>Curriculum Vitae</span>
           <button
             onClick={onClose}
-            className="text-purple-400 hover:text-purple-300 font-semibold"
+            className="text-purple-400 hover:text-purple-300 font-semibold cursor-pointer"
           >
             Close Viewer
           </button>
@@ -216,4 +261,3 @@ ${skillCategories.map(c => `- ${c.name}: ${c.skills.map(s => s.name).join(', ')}
     </div>
   );
 };
-

@@ -1,48 +1,72 @@
 export const experienceData = [
   {
-    id: "exp-1",
+    id: "exp-mobile",
     role: "Cross-Platform Mobile Application Specialist",
     organization: "Flutter & Mobile Engineering Projects",
     period: "2024 – Present",
-    location: "Alexandria, Egypt",
-    type: "Specialization",
-    description: "Developing cross-platform mobile applications in Flutter applying Clean Architecture, BLoC state management, and modern software design patterns.",
+    type: "Project-Based Specialization",
+    description: "Developing cross-platform applications using Flutter with clean, decoupled architectural patterns and modern mobile engineering best practices.",
     responsibilities: [
-      "Architecting mobile applications with decoupled presentation, domain, and data layers",
-      "Implementing state management patterns using Flutter BLoC",
-      "Building clean, responsive UI components optimized for mobile viewports"
+      "Developing cross-platform applications using Flutter",
+      "Applying Clean Architecture with strict separation of layers",
+      "Implementing BLoC / Cubit where appropriate for deterministic state flows",
+      "Separating presentation, domain, and data layers cleanly",
+      "Building responsive, high-performance mobile interfaces",
+      "Integrating APIs and external backend services",
+      "Working with local storage and authentication mechanisms"
     ],
-    skills: ["Flutter", "Cross-platform Mobile Development", "Clean Architecture", "BLoC"]
+    skills: ["Flutter", "Dart", "Clean Architecture", "BLoC", "State Management", "API Integration"]
   },
   {
-    id: "exp-2",
+    id: "exp-embedded",
     role: "Embedded Systems & Hardware Developer",
     organization: "Microcontroller & IoT Development",
     period: "2023 – Present",
-    location: "Burj Al Arab University of Technology",
-    type: "Academic & Personal Projects",
-    description: "Prototyping embedded hardware applications and IoT integrations using microcontrollers and edge devices.",
+    type: "Project-Based Engineering",
+    description: "Designing and building hardware-software integrated prototypes using microcontrollers, sensors, and Linux edge single-board computers.",
     responsibilities: [
-      "Developing microcontroller firmware using C/C++ on Arduino",
-      "Integrating Raspberry Pi edge devices with Python and computer vision modules",
-      "Interfacing hardware sensors, relay actuators, and communication protocols"
+      "Developing embedded firmware using C/C++",
+      "Working with Arduino and Raspberry Pi hardware platforms",
+      "Integrating sensors and hardware components with microcontrollers",
+      "Building hardware-software integrated automation prototypes",
+      "Exploring robotics and computer vision systems",
+      "Working with Raspberry Pi and Python for edge applications"
     ],
-    skills: ["Arduino", "Raspberry Pi", "Embedded Systems", "C/C++", "Python"]
+    skills: ["Arduino", "Raspberry Pi", "Embedded C/C++", "Sensors", "IoT", "Python", "Hardware Interfacing"]
   },
   {
-    id: "exp-3",
+    id: "exp-backend",
     role: "Backend & Web Solutions Developer",
-    organization: "Full Stack & Database Systems",
+    organization: "Full Stack & Database Projects",
     period: "2023 – Present",
-    location: "Alexandria, Egypt",
-    type: "Academic & Full Stack Projects",
-    description: "Building backend web architectures, database schemas, and desktop software solutions.",
+    type: "Project-Based Development",
+    description: "Architecting backend systems, normalized relational databases, RESTful endpoints, and full-stack web solutions.",
     responsibilities: [
-      "Designing relational databases and SQL tables in MySQL",
-      "Building web backend structures and dynamic routing with PHP and Laravel",
-      "Developing object-oriented desktop software using Java and JavaFX"
+      "Designing relational database schemas with high normalization",
+      "Developing SQL databases in MySQL",
+      "Building PHP/Laravel backend structures and routing",
+      "Working with RESTful APIs and request lifecycle handling",
+      "Developing dynamic web applications with interactive client logic",
+      "Building Java/JavaFX desktop applications",
+      "Integrating client applications with persistent databases"
     ],
-    skills: ["Software Development", "Full Stack Development", "Backend Development", "MySQL", "PHP"]
+    skills: ["PHP", "Laravel", "MySQL", "SQL", "RESTful APIs", "Java", "JavaFX", "Full Stack"]
+  },
+  {
+    id: "exp-instructor",
+    role: "Technical Instructor",
+    organization: "Technical Education & Mentorship",
+    period: "Practical Instruction",
+    type: "Instruction & Education",
+    description: "Delivering practical, project-based instruction in programming fundamentals, embedded hardware, and software development concepts to learners.",
+    responsibilities: [
+      "Teaching core programming concepts and algorithmic thinking",
+      "Arduino and embedded systems hands-on education",
+      "Guiding students through practical project-based learning labs",
+      "Public speaking and delivering clear technical explanations",
+      "Mentoring students and beginners through debugging and problem-solving",
+      "Fostering an engineering mindset focused on curiosity and ownership"
+    ],
+    skills: ["Technical Instruction", "Arduino Education", "Programming Concepts", "Public Speaking", "Mentorship"]
   }
 ];
-

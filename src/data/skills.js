@@ -5,9 +5,9 @@ export const skillCategories = [
     icon: "Smartphone",
     skills: [
       { name: "Flutter" },
+      { name: "Dart" },
       { name: "Cross-platform Mobile Development" },
-      { name: "Clean Architecture" },
-      { name: "BLoC" }
+      { name: "Clean Architecture" }
     ]
   },
   {
@@ -15,28 +15,68 @@ export const skillCategories = [
     name: "Software Development",
     icon: "Code2",
     skills: [
-      { name: "Software Development" },
+      { name: "Java" },
+      { name: "JavaFX" },
+      { name: "JDBC" },
+      { name: "C" },
+      { name: "C++" },
+      { name: "OOP" },
+      { name: "Multithreading" },
+      { name: "Data Structures & Algorithms" }
+    ]
+  },
+  {
+    id: "backend-web",
+    name: "Backend & Web",
+    icon: "Server",
+    skills: [
+      { name: "PHP" },
+      { name: "Laravel" },
+      { name: "MySQL" },
+      { name: "SQL" },
+      { name: "REST APIs" },
       { name: "Full Stack Development" },
-      { name: "Backend Development" }
+      { name: "Responsive Web Development" }
     ]
   },
   {
     id: "embedded",
-    name: "Embedded Systems",
+    name: "Embedded & IoT",
     icon: "Cpu",
     skills: [
       { name: "Arduino" },
-      { name: "Raspberry Pi" }
+      { name: "Raspberry Pi" },
+      { name: "Embedded C/C++" },
+      { name: "Sensors" },
+      { name: "Hardware Interfacing" },
+      { name: "Microcontrollers" },
+      { name: "IoT" }
     ]
   },
   {
-    id: "other",
-    name: "Other Technical Areas",
-    icon: "Globe",
+    id: "ai",
+    name: "AI & Computer Vision",
+    icon: "BrainCircuit",
     skills: [
-      { name: "Web Applications" },
-      { name: "Artificial Intelligence" }
+      { name: "Python" },
+      { name: "OpenCV" },
+      { name: "MediaPipe" },
+      { name: "Computer Vision" },
+      { name: "Edge ML" }
+    ]
+  },
+  {
+    id: "tools",
+    name: "Tools",
+    icon: "Wrench",
+    skills: [
+      { name: "Git" },
+      { name: "GitHub" },
+      { name: "IntelliJ IDEA" },
+      { name: "Qt 6" },
+      { name: "Microsoft Office" },
+      { name: "Android Studio" },
+      { name: "VS Code" }
     ]
   }
 ];
-

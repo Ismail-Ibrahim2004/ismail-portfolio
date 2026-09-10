@@ -33,6 +33,14 @@ export const Hero = ({ onOpenResume }) => {
     }
   };
 
+  const heroBadges = [
+    'Flutter',
+    'Clean Architecture',
+    'Backend Systems',
+    'Arduino',
+    'Raspberry Pi'
+  ];
+
   return (
     <section id="home" className="relative min-h-screen pt-28 pb-16 flex items-center bg-grid-pattern overflow-hidden">
       {/* Ambient background glow elements */}
@@ -80,7 +88,7 @@ export const Hero = ({ onOpenResume }) => {
 
             {/* Quick Tech Badge Chips */}
             <div className="flex flex-wrap items-center gap-2 pt-2">
-              {['Flutter', 'Clean Architecture', 'BLoC', 'Backend Systems', 'Arduino', 'Raspberry Pi'].map((tech) => (
+              {heroBadges.map((tech) => (
                 <span
                   key={tech}
                   className="px-2.5 py-1 rounded-md bg-white/5 border border-purple-500/20 text-xs font-mono text-purple-300 hover:border-purple-400 transition-colors"
@@ -155,13 +163,13 @@ export const Hero = ({ onOpenResume }) => {
                   <div className="flex items-center gap-1 font-mono text-[11px]">
                     <button
                       onClick={() => setActiveCodeTab('ismail.dart')}
-                      className={`px-2 py-0.5 rounded ${activeCodeTab === 'ismail.dart' ? 'bg-purple-600/30 text-purple-300 border border-purple-500/40' : 'text-slate-400'}`}
+                      className={`px-2 py-0.5 rounded transition-colors ${activeCodeTab === 'ismail.dart' ? 'bg-purple-600/30 text-purple-300 border border-purple-500/40' : 'text-slate-400'}`}
                     >
                       ismail.dart
                     </button>
                     <button
                       onClick={() => setActiveCodeTab('skills.json')}
-                      className={`px-2 py-0.5 rounded ${activeCodeTab === 'skills.json' ? 'bg-purple-600/30 text-purple-300 border border-purple-500/40' : 'text-slate-400'}`}
+                      className={`px-2 py-0.5 rounded transition-colors ${activeCodeTab === 'skills.json' ? 'bg-purple-600/30 text-purple-300 border border-purple-500/40' : 'text-slate-400'}`}
                     >
                       skills.json
                     </button>
@@ -180,22 +188,23 @@ export const Hero = ({ onOpenResume }) => {
 
                       <div className="pl-4 space-y-1">
                         <div>
-                          <span className="text-sky-400">final</span> String name = <span className="text-emerald-300">"Ismail Ghoneim"</span>;
-                        </div>
-                        <div>
                           <span className="text-sky-400">final</span> String role = <span className="text-emerald-300">"Software Engineer"</span>;
                         </div>
                         <div>
-                          <span className="text-sky-400">final</span> String degree = <span className="text-emerald-300">"IT @ Burj Al Arab Univ"</span>;
+                          <span className="text-sky-400">final</span> String education = <span className="text-emerald-300">"IT Student @ Burj Al Arab Univ"</span>;
+                        </div>
+                        <div>
+                          <span className="text-sky-400">final</span> String primaryFocus = <span className="text-emerald-300">"Flutter & Clean Architecture"</span>;
                         </div>
 
                         <div className="pt-2">
-                          <span className="text-purple-400">List&lt;String&gt;</span> <span className="text-sky-400">getSpecialities</span>() =&gt; [
+                          <span className="text-purple-400">List&lt;String&gt;</span> <span className="text-sky-400">getSpecialties</span>() =&gt; [
                         </div>
-                        <div className="pl-8 text-emerald-300">"Flutter & Cross-Platform Mobile",</div>
-                        <div className="pl-8 text-emerald-300">"Clean Architecture & BLoC",</div>
-                        <div className="pl-8 text-emerald-300">"Backend Software Engineering",</div>
-                        <div className="pl-8 text-emerald-300">"Embedded (Arduino & Raspberry Pi)"</div>
+                        <div className="pl-8 text-emerald-300">"Mobile Application Development",</div>
+                        <div className="pl-8 text-emerald-300">"Software Engineering (OOP / Java / C++)",</div>
+                        <div className="pl-8 text-emerald-300">"Backend Development (PHP / Laravel / SQL)",</div>
+                        <div className="pl-8 text-emerald-300">"Embedded Systems (Arduino / Raspberry Pi)",</div>
+                        <div className="pl-8 text-emerald-300">"Computer Vision (Python / OpenCV / MediaPipe)"</div>
                         <div className="pl-4 text-slate-300">];</div>
                       </div>
 
@@ -207,11 +216,15 @@ export const Hero = ({ onOpenResume }) => {
                     <pre className="text-slate-300">
 {`{
   "name": "Ismail Ghoneim",
-  "title": "Software Engineer",
-  "mobile": ["Flutter", "Cross-platform", "Clean Architecture", "BLoC"],
-  "software": ["Software Development", "Full Stack", "Backend"],
-  "embedded": ["Arduino", "Raspberry Pi"],
-  "other": ["Web Applications", "Artificial Intelligence"]
+  "role": "Software Engineer",
+  "status": "IT Student (4th Year)",
+  "specialization": "Flutter & Mobile Development",
+  "domains": [
+    "Clean Architecture",
+    "Backend Systems",
+    "Embedded & IoT",
+    "Computer Vision Exploration"
+  ]
 }`}
                     </pre>
                   )}
@@ -235,4 +248,3 @@ export const Hero = ({ onOpenResume }) => {
     </section>
   );
 };
-

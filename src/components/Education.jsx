@@ -1,5 +1,5 @@
 import React from 'react';
-import { GraduationCap, MapPin, CheckCircle2 } from 'lucide-react';
+import { GraduationCap, MapPin, CheckCircle2, Calendar, BookOpen } from 'lucide-react';
 import { educationData } from '../data/education';
 
 export const Education = () => {
@@ -43,26 +43,55 @@ export const Education = () => {
                   </div>
                 </div>
 
-                <span className="self-start sm:self-center px-3.5 py-1.5 rounded-full bg-purple-600/20 border border-purple-500/40 text-purple-300 text-xs font-mono font-semibold">
-                  {edu.period}
-                </span>
+                <div className="flex flex-col sm:items-end gap-1">
+                  <span className="self-start sm:self-auto px-3.5 py-1.5 rounded-full bg-purple-600/20 border border-purple-500/40 text-purple-300 text-xs font-mono font-semibold flex items-center gap-1.5">
+                    <Calendar className="w-3.5 h-3.5" />
+                    <span>{edu.period}</span>
+                  </span>
+                  <span className="text-[11px] font-mono text-emerald-400 font-medium">
+                    {edu.currentStatus} • {edu.graduationExpected}
+                  </span>
+                </div>
               </div>
 
-              <div className="flex items-center gap-2 text-xs font-mono text-slate-400">
-                <MapPin className="w-4 h-4 text-purple-400" />
-                <span>{edu.location}</span>
+              <div className="flex flex-wrap items-center justify-between gap-2 text-xs font-mono text-slate-400">
+                <div className="flex items-center gap-2">
+                  <MapPin className="w-4 h-4 text-purple-400" />
+                  <span>{edu.location}</span>
+                </div>
+                <div className="text-purple-300">
+                  {edu.department}
+                </div>
               </div>
 
               <p className="text-slate-300 text-sm sm:text-base leading-relaxed">
                 {edu.description}
               </p>
 
+              {/* Academic Focus Areas */}
+              <div className="space-y-3 pt-2">
+                <div className="text-xs font-mono text-purple-300 flex items-center gap-2">
+                  <BookOpen className="w-3.5 h-3.5" />
+                  <span>Academic Focus Areas</span>
+                </div>
+                <div className="flex flex-wrap gap-2">
+                  {edu.academicFocus.map((focus, fIdx) => (
+                    <span
+                      key={fIdx}
+                      className="px-3 py-1 rounded-lg bg-white/5 border border-purple-500/20 text-xs font-mono text-slate-200"
+                    >
+                      {focus}
+                    </span>
+                  ))}
+                </div>
+              </div>
+
               <div className="pt-4 border-t border-purple-500/15 flex items-center justify-between text-xs font-mono text-slate-400">
                 <div className="flex items-center gap-2">
                   <CheckCircle2 className="w-4 h-4 text-emerald-400" />
-                  <span>Bachelor Degree Candidate</span>
+                  <span>Information Technology Student</span>
                 </div>
-                <span>Information Technology Department</span>
+                <span>Graduation: 2027</span>
               </div>
             </div>
           ))}
@@ -72,4 +101,3 @@ export const Education = () => {
     </section>
   );
 };
-

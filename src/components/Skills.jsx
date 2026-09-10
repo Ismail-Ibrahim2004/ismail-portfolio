@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Smartphone, Code2, Cpu, Globe, Sparkles, CheckCircle2 } from 'lucide-react';
+import { Smartphone, Code2, Cpu, Server, BrainCircuit, Wrench, Sparkles, CheckCircle2 } from 'lucide-react';
 import { skillCategories } from '../data/skills';
 
 export const Skills = () => {
@@ -9,8 +9,10 @@ export const Skills = () => {
     switch (iconName) {
       case 'Smartphone': return <Smartphone className="w-5 h-5 text-purple-400" />;
       case 'Code2': return <Code2 className="w-5 h-5 text-violet-400" />;
-      case 'Cpu': return <Cpu className="w-5 h-5 text-indigo-400" />;
-      case 'Globe': return <Globe className="w-5 h-5 text-emerald-400" />;
+      case 'Server': return <Server className="w-5 h-5 text-indigo-400" />;
+      case 'Cpu': return <Cpu className="w-5 h-5 text-cyan-400" />;
+      case 'BrainCircuit': return <BrainCircuit className="w-5 h-5 text-pink-400" />;
+      case 'Wrench': return <Wrench className="w-5 h-5 text-emerald-400" />;
       default: return <Sparkles className="w-5 h-5 text-purple-400" />;
     }
   };
@@ -27,13 +29,13 @@ export const Skills = () => {
         <div className="text-center max-w-3xl mx-auto mb-12 space-y-3">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-purple-950/60 border border-purple-500/30 text-purple-400 text-xs font-mono">
             <Cpu className="w-3.5 h-3.5" />
-            <span>Verified Skills & Competencies</span>
+            <span>Technical Capabilities</span>
           </div>
           <h2 className="text-3xl sm:text-5xl font-extrabold font-['Outfit'] tracking-tight text-white">
-            Skills & <span className="bg-gradient-to-r from-purple-400 to-violet-400 bg-clip-text text-transparent">Specializations</span>
+            Skills & <span className="bg-gradient-to-r from-purple-400 to-violet-400 bg-clip-text text-transparent">Technologies</span>
           </h2>
           <p className="text-slate-400 text-sm sm:text-base">
-            Structured skill areas built across mobile engineering, software systems, embedded technology, and technical domains.
+            Organized across mobile development, software systems, backend architectures, embedded devices, and developer tools.
           </p>
         </div>
 
@@ -67,7 +69,7 @@ export const Skills = () => {
         </div>
 
         {/* Category Cards Display */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {filteredCategories.map((cat) => (
             <div
               key={cat.id}
@@ -80,7 +82,7 @@ export const Skills = () => {
                     <div className="p-2.5 rounded-xl bg-purple-950/70 border border-purple-500/30">
                       {getCategoryIcon(cat.icon)}
                     </div>
-                    <h3 className="text-lg font-bold font-['Outfit'] text-white">
+                    <h3 className="text-base sm:text-lg font-bold font-['Outfit'] text-white">
                       {cat.name}
                     </h3>
                   </div>
@@ -90,9 +92,12 @@ export const Skills = () => {
                 </div>
 
                 {/* Skill Badges List */}
-                <div className="pt-5 grid grid-cols-1 sm:grid-cols-2 gap-3">
+                <div className="pt-5 grid grid-cols-1 gap-2.5">
                   {cat.skills.map((skill, idx) => (
-                    <div key={idx} className="group p-3 rounded-xl bg-white/5 border border-purple-500/10 hover:border-purple-500/40 hover:bg-purple-950/30 transition-all flex items-center gap-2 text-xs font-mono text-slate-200">
+                    <div
+                      key={idx}
+                      className="group p-2.5 rounded-xl bg-white/5 border border-purple-500/10 hover:border-purple-500/40 hover:bg-purple-950/30 transition-all flex items-center gap-2.5 text-xs font-mono text-slate-200"
+                    >
                       <CheckCircle2 className="w-4 h-4 text-purple-400 shrink-0" />
                       <span className="font-semibold group-hover:text-purple-300 transition-colors">
                         {skill.name}
@@ -102,8 +107,9 @@ export const Skills = () => {
                 </div>
               </div>
 
-              <div className="pt-4 border-t border-purple-500/10 text-right">
-                <span className="text-[11px] font-mono text-slate-400">Verified Professional Skill</span>
+              <div className="pt-4 border-t border-purple-500/10 flex items-center justify-between text-[11px] font-mono text-slate-400">
+                <span>Verified Technical Skill</span>
+                <span className="text-purple-400">Category Active</span>
               </div>
             </div>
           ))}
@@ -113,4 +119,3 @@ export const Skills = () => {
     </section>
   );
 };
-

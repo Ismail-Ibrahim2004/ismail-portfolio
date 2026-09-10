@@ -36,10 +36,37 @@ export const About = () => {
                 
                 {/* Developer Badge Header */}
                 <div className="relative rounded-2xl overflow-hidden bg-gradient-to-b from-purple-950/80 to-[#0A0B10] p-8 text-center border border-purple-500/20">
-                  <div className="w-28 h-28 mx-auto rounded-2xl bg-gradient-to-tr from-purple-600 to-violet-400 p-1 shadow-xl shadow-purple-600/30 mb-4">
-                    <div className="w-full h-full rounded-xl bg-[#0F111A] flex items-center justify-center text-4xl font-extrabold font-['Outfit'] text-purple-300">
-                      IG
-                    </div>
+                  {/* Profile Photo */}
+                  <div className="relative w-32 h-32 mx-auto mb-4">
+                    {/* Rotating gradient ring */}
+                    <div className="absolute -inset-1 rounded-full bg-gradient-to-tr from-purple-600 via-violet-500 to-indigo-400 opacity-80 blur-sm animate-pulse-glow" />
+                    <div className="absolute -inset-0.5 rounded-full bg-gradient-to-tr from-purple-600 via-violet-500 to-indigo-400" />
+
+                    {profileData.avatar ? (
+                      /* ── Real photo ── */
+                      <div className="relative w-full h-full rounded-full overflow-hidden shadow-2xl shadow-purple-600/40">
+                        <img
+                          src={profileData.avatar}
+                          alt="Ismail Ghoneim"
+                          className="w-full h-full object-cover object-center"
+                        />
+                        {/* shine overlay */}
+                        <div className="absolute inset-0 bg-gradient-to-br from-white/10 via-transparent to-transparent pointer-events-none" />
+                      </div>
+                    ) : (
+                      /* ── Placeholder (initials) ── */
+                      <div className="relative w-full h-full rounded-full bg-[#0F111A] flex flex-col items-center justify-center shadow-2xl shadow-purple-600/40 overflow-hidden">
+                        {/* subtle radial glow inside */}
+                        <div className="absolute inset-0 bg-gradient-to-br from-purple-600/20 via-transparent to-indigo-600/10 pointer-events-none" />
+                        <span className="text-3xl font-extrabold font-['Outfit'] bg-gradient-to-br from-purple-300 via-violet-300 to-indigo-300 bg-clip-text text-transparent select-none">
+                          IG
+                        </span>
+                        <span className="text-[9px] font-mono text-slate-500 mt-0.5 tracking-widest uppercase">photo</span>
+                      </div>
+                    )}
+
+                    {/* Online badge */}
+                    <div className="absolute bottom-1 right-1 w-5 h-5 rounded-full bg-emerald-500 border-2 border-[#0F111A] shadow-lg shadow-emerald-500/40" />
                   </div>
 
                   <h3 className="text-xl font-bold text-white font-['Outfit']">Ismail Ghoneim</h3>

@@ -14,7 +14,7 @@ export const Navbar = ({ onOpenResume }) => {
         setIsScrolled(false);
       }
 
-      const sections = ['home', 'about', 'services', 'skills', 'projects', 'experience', 'education', 'contact'];
+      const sections = ['home', 'about', 'specialties', 'skills', 'projects', 'experience', 'education', 'contact'];
       const scrollPos = window.scrollY + 200;
 
       for (const section of sections) {
@@ -37,7 +37,7 @@ export const Navbar = ({ onOpenResume }) => {
   const navLinks = [
     { name: 'Home', href: '#home' },
     { name: 'About', href: '#about' },
-    { name: 'Specialties', href: '#services' },
+    { name: 'Specialties', href: '#specialties' },
     { name: 'Skills', href: '#skills' },
     { name: 'Projects', href: '#projects' },
     { name: 'Experience', href: '#experience' },
@@ -92,7 +92,7 @@ export const Navbar = ({ onOpenResume }) => {
           <div className="hidden lg:flex items-center gap-3">
             <button
               onClick={onOpenResume}
-              className="flex items-center gap-2 bg-gradient-to-r from-purple-600 to-violet-600 hover:from-purple-500 hover:to-violet-500 text-white text-xs font-semibold px-4 py-2 rounded-full shadow-lg shadow-purple-600/30 transition-all hover:scale-105 active:scale-95"
+              className="flex items-center gap-2 bg-gradient-to-r from-purple-600 to-violet-600 hover:from-purple-500 hover:to-violet-500 text-white text-xs font-semibold px-4 py-2 rounded-full shadow-lg shadow-purple-600/30 transition-all hover:scale-105 active:scale-95 cursor-pointer"
             >
               <FileText className="w-3.5 h-3.5" />
               <span>Download CV</span>
@@ -103,7 +103,7 @@ export const Navbar = ({ onOpenResume }) => {
           <div className="flex lg:hidden items-center gap-2">
             <button
               onClick={onOpenResume}
-              className="flex items-center gap-1.5 bg-purple-600/20 border border-purple-500/30 text-purple-300 text-xs px-3 py-1.5 rounded-full font-medium"
+              className="flex items-center gap-1.5 bg-purple-600/20 border border-purple-500/30 text-purple-300 text-xs px-3 py-1.5 rounded-full font-medium cursor-pointer"
             >
               <FileText className="w-3.5 h-3.5" />
               <span>CV</span>
@@ -111,7 +111,7 @@ export const Navbar = ({ onOpenResume }) => {
 
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="p-2 rounded-lg bg-white/5 border border-purple-500/20 text-slate-300 hover:text-white focus:outline-none"
+              className="p-2 rounded-lg bg-white/5 border border-purple-500/20 text-slate-300 hover:text-white focus:outline-none cursor-pointer"
               aria-label="Toggle Navigation Menu"
             >
               {mobileMenuOpen ? <X className="w-6 h-6 text-purple-400" /> : <Menu className="w-6 h-6" />}
@@ -142,7 +142,7 @@ export const Navbar = ({ onOpenResume }) => {
                 setMobileMenuOpen(false);
                 onOpenResume();
               }}
-              className="w-full flex items-center justify-center gap-2 bg-gradient-to-r from-purple-600 to-violet-600 text-white font-semibold py-2.5 rounded-xl shadow-lg shadow-purple-600/30"
+              className="w-full flex items-center justify-center gap-2 bg-gradient-to-r from-purple-600 to-violet-600 text-white font-semibold py-2.5 rounded-xl shadow-lg shadow-purple-600/30 cursor-pointer"
             >
               <FileText className="w-4 h-4" />
               <span>View & Download CV</span>
@@ -153,4 +153,3 @@ export const Navbar = ({ onOpenResume }) => {
     </header>
   );
 };
-

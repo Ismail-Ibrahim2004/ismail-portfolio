@@ -1,12 +1,12 @@
 import React from 'react';
-import { X, ExternalLink, CheckCircle2, Cpu, Wrench, Layers, ShieldCheck } from 'lucide-react';
+import { X, ExternalLink, CheckCircle2, Cpu, Wrench, Layers, Users } from 'lucide-react';
 import { GithubIcon } from './SocialIcons';
 
 export const ProjectModal = ({ project, onClose }) => {
   if (!project) return null;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 overflow-y-auto bg-black/80 backdrop-blur-md animate-in fade-in duration-200">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 overflow-y-auto bg-black/85 backdrop-blur-md animate-in fade-in duration-200">
       
       {/* Modal Container */}
       <div className="relative w-full max-w-4xl rounded-3xl bg-[#0F111A] border border-purple-500/30 shadow-2xl overflow-hidden my-8 max-h-[90vh] flex flex-col">
@@ -15,9 +15,9 @@ export const ProjectModal = ({ project, onClose }) => {
         <div className="bg-[#121422] px-6 py-4 border-b border-purple-500/20 flex items-center justify-between sticky top-0 z-20">
           <div className="flex items-center gap-3">
             <span className="px-3 py-1 rounded-full bg-purple-600/30 border border-purple-500/40 text-purple-300 text-xs font-mono font-semibold">
-              {project.category} Case Study
+              {project.categoryLabel || project.category} Case Study
             </span>
-            <h3 className="text-lg font-bold font-['Outfit'] text-white truncate max-w-xs sm:max-w-md">
+            <h3 className="text-base sm:text-lg font-bold font-['Outfit'] text-white truncate max-w-xs sm:max-w-md">
               {project.title}
             </h3>
           </div>
@@ -41,7 +41,7 @@ export const ProjectModal = ({ project, onClose }) => {
               alt={project.title}
               className="w-full h-full object-cover"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-[#0F111A] via-transparent to-transparent opacity-90" />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#0F111A] via-black/40 to-transparent opacity-90" />
             
             <div className="absolute bottom-6 left-6 right-6 space-y-2">
               <h2 className="text-2xl sm:text-4xl font-extrabold font-['Outfit'] text-white">
@@ -54,18 +54,31 @@ export const ProjectModal = ({ project, onClose }) => {
           {/* Quick Info Grid */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             <div className="p-4 rounded-xl bg-white/5 border border-purple-500/20 space-y-1">
-              <div className="text-xs font-mono text-purple-400">My Role</div>
+              <div className="text-xs font-mono text-purple-400">Engineering Role</div>
               <div className="text-sm font-semibold text-white">{project.role}</div>
             </div>
             <div className="p-4 rounded-xl bg-white/5 border border-purple-500/20 space-y-1">
               <div className="text-xs font-mono text-purple-400">Category</div>
-              <div className="text-sm font-semibold text-white">{project.category} Engineering</div>
+              <div className="text-sm font-semibold text-white">{project.categoryLabel || project.category}</div>
             </div>
             <div className="p-4 rounded-xl bg-white/5 border border-purple-500/20 space-y-1">
               <div className="text-xs font-mono text-purple-400">Architecture</div>
-              <div className="text-sm font-semibold text-white">Modular & Responsive</div>
+              <div className="text-sm font-semibold text-white">Modular & Maintainable</div>
             </div>
           </div>
+
+          {/* Leadership Banner if applicable */}
+          {project.leadershipDetails && (
+            <div className="p-5 rounded-2xl bg-emerald-950/30 border border-emerald-500/30 space-y-2">
+              <div className="flex items-center gap-2 text-emerald-400 font-semibold font-['Outfit'] text-sm sm:text-base">
+                <Users className="w-4 h-4" />
+                <span>Team Leadership & Coordination</span>
+              </div>
+              <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
+                {project.leadershipDetails}
+              </p>
+            </div>
+          )}
 
           {/* Overview */}
           <div className="space-y-3">
@@ -73,31 +86,9 @@ export const ProjectModal = ({ project, onClose }) => {
               <Layers className="w-5 h-5 text-purple-400" />
               <span>Project Overview</span>
             </h4>
-            <p className="text-slate-300 text-sm sm:text-base leading-relaxed bg-white/5 border border-purple-500/10 p-4 rounded-xl">
+            <p className="text-slate-300 text-sm sm:text-base leading-relaxed bg-white/5 border border-purple-500/10 p-5 rounded-xl">
               {project.overview}
             </p>
-          </div>
-
-          {/* Problem & Solution Dual Column */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div className="space-y-3 p-5 rounded-2xl bg-rose-950/20 border border-rose-500/30">
-              <h4 className="text-base font-bold font-['Outfit'] text-rose-300 flex items-center gap-2">
-                <span>The Problem</span>
-              </h4>
-              <p className="text-slate-300 text-xs sm:text-sm leading-relaxed">
-                {project.problem}
-              </p>
-            </div>
-
-            <div className="space-y-3 p-5 rounded-2xl bg-emerald-950/20 border border-emerald-500/30">
-              <h4 className="text-base font-bold font-['Outfit'] text-emerald-300 flex items-center gap-2">
-                <ShieldCheck className="w-4 h-4 text-emerald-400" />
-                <span>The Solution</span>
-              </h4>
-              <p className="text-slate-300 text-xs sm:text-sm leading-relaxed">
-                {project.solution}
-              </p>
-            </div>
           </div>
 
           {/* Key Features */}
@@ -123,7 +114,7 @@ export const ProjectModal = ({ project, onClose }) => {
           <div className="space-y-3">
             <h4 className="text-lg font-bold font-['Outfit'] text-white flex items-center gap-2">
               <Wrench className="w-5 h-5 text-indigo-400" />
-              <span>Technologies & Libraries Used</span>
+              <span>Technologies & Libraries</span>
             </h4>
             <div className="flex flex-wrap gap-2">
               {project.techStack.map((tech, idx) => (
@@ -142,7 +133,7 @@ export const ProjectModal = ({ project, onClose }) => {
         {/* Modal Bottom Footer Actions */}
         <div className="bg-[#121422] px-6 py-4 border-t border-purple-500/20 flex flex-wrap items-center justify-between gap-4 sticky bottom-0 z-20">
           <div className="text-xs font-mono text-slate-400">
-            Ismail Ghoneim • Case Study Details
+            Ismail Ghoneim • Engineering Portfolio
           </div>
 
           <div className="flex items-center gap-3">
@@ -154,7 +145,7 @@ export const ProjectModal = ({ project, onClose }) => {
                 className="flex items-center gap-2 px-4 py-2 rounded-xl bg-white/5 border border-purple-500/30 text-slate-200 hover:text-white hover:bg-purple-600/20 text-xs font-semibold transition-all"
               >
                 <GithubIcon className="w-4 h-4" />
-                <span>GitHub Repo</span>
+                <span>GitHub Repository</span>
               </a>
             )}
 

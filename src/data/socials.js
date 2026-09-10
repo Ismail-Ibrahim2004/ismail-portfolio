@@ -3,7 +3,7 @@ export const socialsData = [
     id: "linkedin",
     name: "LinkedIn",
     handle: "ismailghoneim-50b741259",
-    url: "https://www.linkedin.com/in/ismailghoneim-50b741259",
+    url: "https://www.linkedin.com/in/ismail-ghoneim-50b741259",
     description: "Connect professionally, view network updates, and discuss engineering opportunities.",
     icon: "Linkedin",
     color: "hover:border-purple-500 hover:shadow-purple-500/20",

@@ -1,16 +1,51 @@
 import React, { useState } from 'react';
-import { ExternalLink, Eye, FolderGit2 } from 'lucide-react';
+import { ExternalLink, Eye, FolderGit2, Users, Smartphone, Code2, Cpu, Globe } from 'lucide-react';
 import { projectsData } from '../data/projects';
 import { GithubIcon } from './SocialIcons';
 
 export const Projects = ({ onSelectProject }) => {
   const [filter, setFilter] = useState('All');
 
-  const categories = ['All', 'Web', 'Software', 'AI', 'IoT'];
+  const categories = ['All', 'Mobile', 'Software', 'Web', 'Embedded', 'AI'];
 
   const filteredProjects = filter === 'All'
     ? projectsData
     : projectsData.filter((p) => p.category.toLowerCase() === filter.toLowerCase());
+
+  const getTierBadge = (tier) => {
+    switch (tier) {
+      case 1:
+        return (
+          <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-purple-600/90 text-white text-[10px] font-mono font-semibold shadow-sm">
+            <Smartphone className="w-3 h-3" />
+            <span>Tier 1 • Mobile Focus</span>
+          </span>
+        );
+      case 2:
+        return (
+          <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-violet-950/80 border border-violet-500/40 text-violet-300 text-[10px] font-mono font-medium">
+            <Code2 className="w-3 h-3" />
+            <span>Tier 2 • Software Systems</span>
+          </span>
+        );
+      case 3:
+        return (
+          <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-indigo-950/80 border border-indigo-500/30 text-indigo-300 text-[10px] font-mono font-medium">
+            <Cpu className="w-3 h-3" />
+            <span>Tier 3 • Edge & Systems</span>
+          </span>
+        );
+      case 4:
+        return (
+          <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-slate-900/80 border border-slate-700/50 text-slate-300 text-[10px] font-mono font-medium">
+            <Globe className="w-3 h-3" />
+            <span>Tier 4 • Web Application</span>
+          </span>
+        );
+      default:
+        return null;
+    }
+  };
 
   return (
     <section id="projects" className="relative py-24 bg-[#0A0B10] border-t border-purple-500/20">
@@ -23,13 +58,13 @@ export const Projects = ({ onSelectProject }) => {
         <div className="text-center max-w-3xl mx-auto mb-12 space-y-3">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-purple-950/60 border border-purple-500/30 text-purple-400 text-xs font-mono">
             <FolderGit2 className="w-3.5 h-3.5" />
-            <span>Things I've Built</span>
+            <span>Selected Works</span>
           </div>
           <h2 className="text-3xl sm:text-5xl font-extrabold font-['Outfit'] tracking-tight text-white">
-            Featured <span className="bg-gradient-to-r from-purple-400 to-violet-400 bg-clip-text text-transparent">Projects</span>
+            Projects & <span className="bg-gradient-to-r from-purple-400 to-violet-400 bg-clip-text text-transparent">Applications</span>
           </h2>
           <p className="text-slate-400 text-sm sm:text-base">
-            Real-world software applications, IoT embedded systems, computer vision platforms, and modern luxury web builds.
+            Structured portfolio prioritizing mobile engineering with Flutter, desktop software systems, edge computing, and full-stack web platforms.
           </p>
         </div>
 
@@ -39,13 +74,13 @@ export const Projects = ({ onSelectProject }) => {
             <button
               key={cat}
               onClick={() => setFilter(cat)}
-              className={`px-5 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all ${
+              className={`px-5 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all cursor-pointer ${
                 filter === cat
                   ? 'bg-gradient-to-r from-purple-600 to-violet-600 text-white shadow-lg shadow-purple-600/30 border border-purple-400/40 scale-105'
                   : 'bg-[#0F111A] border border-purple-500/20 text-slate-300 hover:text-white hover:border-purple-400/40'
               }`}
             >
-              {cat}
+              {cat === 'All' ? 'All (9)' : cat}
             </button>
           ))}
         </div>
@@ -55,30 +90,42 @@ export const Projects = ({ onSelectProject }) => {
           {filteredProjects.map((project) => (
             <div
               key={project.id}
-              className="glass-panel glass-panel-hover rounded-2xl overflow-hidden border border-purple-500/20 bg-[#0F111A]/90 flex flex-col justify-between group"
+              className={`glass-panel glass-panel-hover rounded-2xl overflow-hidden border bg-[#0F111A]/90 flex flex-col justify-between group transition-all ${
+                project.tier === 1 ? 'border-purple-500/40 shadow-[0_0_20px_rgba(138,43,226,0.12)]' : 'border-purple-500/20'
+              }`}
             >
               <div>
                 {/* Project Image Header */}
-                <div className="relative h-48 overflow-hidden bg-black/40">
+                <div className="relative h-52 overflow-hidden bg-black/40">
                   <img
                     src={project.image}
                     alt={project.title}
-                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                     loading="lazy"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#0F111A] via-transparent to-transparent opacity-80" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#0F111A] via-black/30 to-transparent" />
 
-                  {/* Category Pill Badge */}
-                  <div className="absolute top-3 left-3 px-3 py-1 rounded-full bg-black/70 backdrop-blur-md border border-purple-500/40 text-purple-300 text-xs font-mono font-semibold">
-                    {project.category}
+                  {/* Top Badges */}
+                  <div className="absolute top-3 left-3 right-3 flex items-center justify-between gap-1.5 flex-wrap">
+                    <div className="flex items-center gap-1.5">
+                      {getTierBadge(project.tier, project.category)}
+                    </div>
+
+                    {project.leadership === 'Team Leader' && (
+                      <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-emerald-950/90 border border-emerald-500/50 text-emerald-300 text-[10px] font-mono font-semibold shadow-sm">
+                        <Users className="w-3 h-3" />
+                        <span>Team Leader</span>
+                      </span>
+                    )}
                   </div>
 
                   {/* Quick Action Overlay */}
                   <div className="absolute bottom-3 right-3 flex items-center gap-2">
                     <button
                       onClick={() => onSelectProject(project)}
-                      className="p-2 rounded-xl bg-purple-600/90 text-white hover:bg-purple-500 backdrop-blur-md shadow-lg transition-transform hover:scale-110"
+                      className="p-2 rounded-xl bg-purple-600 text-white hover:bg-purple-500 backdrop-blur-md shadow-lg transition-transform hover:scale-110 cursor-pointer"
                       title="View Detailed Case Study"
+                      aria-label={`View details for ${project.title}`}
                     >
                       <Eye className="w-4 h-4" />
                     </button>
@@ -88,7 +135,7 @@ export const Projects = ({ onSelectProject }) => {
                 {/* Content Body */}
                 <div className="p-6 space-y-4">
                   <div className="space-y-1">
-                    <h3 className="text-xl font-bold font-['Outfit'] text-white group-hover:text-purple-300 transition-colors">
+                    <h3 className="text-xl font-bold font-['Outfit'] text-white group-hover:text-purple-300 transition-colors line-clamp-1">
                       {project.title}
                     </h3>
                     <p className="text-xs font-mono text-purple-400">{project.subtitle}</p>
@@ -121,9 +168,9 @@ export const Projects = ({ onSelectProject }) => {
               <div className="px-6 py-4 border-t border-purple-500/15 bg-black/20 flex items-center justify-between gap-2">
                 <button
                   onClick={() => onSelectProject(project)}
-                  className="flex items-center gap-1.5 text-xs font-semibold text-purple-400 hover:text-purple-300 transition-colors"
+                  className="flex items-center gap-1.5 text-xs font-semibold text-purple-400 hover:text-purple-300 transition-colors cursor-pointer"
                 >
-                  <span>View Details</span>
+                  <span>Case Study</span>
                   <Eye className="w-3.5 h-3.5" />
                 </button>
 
@@ -135,6 +182,7 @@ export const Projects = ({ onSelectProject }) => {
                       rel="noopener noreferrer"
                       className="p-2 rounded-lg bg-white/5 border border-purple-500/20 text-slate-300 hover:text-white hover:border-purple-400 transition-colors"
                       title="GitHub Repository"
+                      aria-label="GitHub Repository"
                     >
                       <GithubIcon className="w-3.5 h-3.5" />
                     </a>
@@ -147,7 +195,7 @@ export const Projects = ({ onSelectProject }) => {
                       rel="noopener noreferrer"
                       className="flex items-center gap-1 px-3 py-1.5 rounded-lg bg-purple-600/20 border border-purple-500/40 text-purple-300 text-xs font-semibold hover:bg-purple-600 hover:text-white transition-all"
                     >
-                      <span>Live</span>
+                      <span>Live Demo</span>
                       <ExternalLink className="w-3 h-3" />
                     </a>
                   )}

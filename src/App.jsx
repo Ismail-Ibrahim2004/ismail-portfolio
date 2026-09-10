@@ -7,6 +7,8 @@ import { Skills } from './components/Skills';
 import { Projects } from './components/Projects';
 import { ProjectModal } from './components/ProjectModal';
 import { Experience } from './components/Experience';
+import { Leadership } from './components/Leadership';
+import { Certificates } from './components/Certificates';
 import { Education } from './components/Education';
 import { SocialHub } from './components/SocialHub';
 import { Contact } from './components/Contact';
@@ -31,6 +33,8 @@ export default function App() {
         <Skills />
         <Projects onSelectProject={(project) => setSelectedProject(project)} />
         <Experience />
+        <Leadership />
+        <Certificates />
         <Education />
         <SocialHub />
         <Contact />
@@ -55,4 +59,3 @@ export default function App() {
     </div>
   );
 }
-
