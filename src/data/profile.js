@@ -2,7 +2,7 @@ export const profileData = {
   name: "Ismail Ghoneim",
   title: "Software Engineer",
   // 👇 Replace this URL with your own photo link
-  avatar: "https://6aa2a74eea08b9137fd582da.imgix.net/sandbox/ismail%20n.png",
+  avatar: "/images/ismail.png",
   headline: "Building Reliable Digital Solutions",
   subheadline: "Software Engineer focused on mobile applications, backend systems, embedded technology, and practical software solutions.",
   status: "Open to Software Engineering Opportunities",
